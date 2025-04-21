@@ -18,7 +18,7 @@ public class Diary {
         if(isLocked){
             throw new IllegalArgumentException("Diary is locked. Unlock to access entries.");
         }
-        return entries;
+        return new ArrayList<>(entries);
     }
 
     public Diary(String username, String password){
