@@ -15,46 +15,59 @@ public class Diary {
         return password;
     }
     public List<Entry> getEntries() {
+        if(isLocked){
+            throw new IllegalArgumentException("Diary is locked. Unlock to access entries.");
+        }
         return entries;
     }
 
     public Diary(String username, String password){
+        validateUsername(username);
         this.username = username;
         this.password = password;
         this.entries = new ArrayList<>();
     }
+    public static void validateUsername(String username){
+        if(username == null || username.trim().isEmpty()){
+            throw new IllegalArgumentException("User name cannot be empty");
+        }
+        if(!username.matches("[A-z0-9_]{3,15}")){
+            throw new IllegalArgumentException("Invalid username");
+        }
+    }
     public Diary(){
 
     }
-    public void unlockDiary(String pin) {
+    public boolean unlockDiary(String pin) {
     if(pin.equals(password)) {
-        isLocked = false;
+        this.isLocked = false;
+        return true;
     }
-
+    return true;
     }
-    public boolean lockDiary() {
-        isLocked();
-        return isLocked;
+    public void lockDiary() {
+        this.isLocked = true;
     }
     public boolean isLocked() {
-        if(isLocked == true) {
-            return true;
-        }else {
-            return false;
-        }
-
+        return isLocked;
     }
     public void createEntry(Entry entry) {
-        entries.add(entry);
+        if(!isLocked) {entries.add(entry);
+        }else{
+            throw new IllegalArgumentException("Diary is locked. Unlock to add entries.");}
     }
     public void deleteEntry(Entry entry) {
-        entries.remove(entry);
+        if(!isLocked) {
+            entries.remove(entry);
+        }else throw new IllegalArgumentException("Diary is locked. Unlock to access entries.");
     }
+
     public Entry findEntryById(String id) {
-        for(Entry entry : entries) {
-            if(entry.getId().equalsIgnoreCase(id)) {
-                return entry;
-            }
+        if (isLocked) {
+            throw new IllegalArgumentException("Diary is locked. Unlock to access entries.");
+        }
+        for (Entry entry : entries) {
+            if (entry.getId().equals(id)) {return entry;}
         }
         return null;
     }
@@ -66,8 +79,6 @@ public class Diary {
         }
         }
     }
-
-
     @Override
     public String toString() {
         return "Diary{" +

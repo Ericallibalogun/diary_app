@@ -72,7 +72,7 @@ public class DiaryTest {
         Diaries diaries = new Diaries();
         diary.isLocked();
         diary.unlockDiary("eric@312");
-        Entry myEntryTwo = new Entry("12","My Peejay","I really love peejay");
+        Entry myEntryTwo = new Entry("12","My words","I really love words");
         diaries.addDiary(diary);
         diary.createEntry(myEntryTwo);
         assertEquals( diary, diaries.findByUserName("Eric"));
@@ -92,6 +92,27 @@ public class DiaryTest {
         assertEquals(1,diaries.getDiaries().size());
     }
     @Test
-    public void test
+    public void testThatDiaryUpdateEntry(){
+        Diary diary = new Diary("monica","Ericali9");
+        diary.isLocked();
+        diary.unlockDiary("Ericali9");
+        Entry myEntry = new Entry("34","Atomic Habits","The atoms of habits");
+        diary.createEntry(myEntry);
+        diary.updateEntry("34","Atomic Habit","NeverMind");
+        assertEquals("Atomic Habit",myEntry.getTitle());
+        assertEquals("NeverMind",myEntry.getBody());
+    }
+    @Test
+    public void testThatDiaryUpdateTwice(){
+        Diary diary= new Diary("Xavier","west123");
+        diary.isLocked();
+        diary.unlockDiary("west123");
+        Entry myEntry = new Entry ("32","Best Friends","Always there for eachother");
+        diary.createEntry(myEntry);
+        diary.updateEntry("32","Friends for life","u sure about that?");
+        diary.updateEntry("32","Undefined","it is empty oooh");
+        assertEquals("Undefined",myEntry.getTitle());
+        assertEquals("it is empty oooh",myEntry.getBody());
+    }
 
 }
