@@ -30,6 +30,11 @@ public class Entry {
     public LocalDateTime getDateCreated() {
         return dateCreated;
     }
+
+    public void setDateCreated(LocalDateTime dateCreated) {
+        this.dateCreated = dateCreated;
+    }
+
     @Override
     public String toString() {
         return "Entry{" +

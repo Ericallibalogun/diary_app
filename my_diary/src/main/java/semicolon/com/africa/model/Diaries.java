@@ -25,6 +25,7 @@ public class Diaries {
         for(Diary diary : diaries){
             if(diary.getUsername().equals(username)){
                diaries.remove(diary);
+               break;
             }
         }
     }

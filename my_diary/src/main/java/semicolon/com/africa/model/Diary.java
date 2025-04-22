@@ -11,9 +11,6 @@ public class Diary {
     public String getUsername() {
         return username;
     }
-    public String getPassword() {
-        return password;
-    }
     public List<Entry> getEntries() {
         if(isLocked){
             throw new IllegalArgumentException("Diary is locked. Unlock to access entries.");
@@ -59,6 +56,7 @@ public class Diary {
     public void deleteEntry(Entry entry) {
         if(!isLocked) {
             entries.remove(entry);
+
         }else throw new IllegalArgumentException("Diary is locked. Unlock to access entries.");
     }
 

@@ -17,9 +17,11 @@ public class MainApplication {
                     4  =>> View entries
                     5  =>> Delete Entry
                     6  =>> Update Entry
-                    7  =>> Find Diary
-                    8 =>> Delete Diary
-                    9 =>> Exit
+                    7  =>> Lock Diary
+                    8  =>> Unlock Diary
+                    9  =>> Find Diary
+                    10 =>> Delete Diary
+                    11 =>> Exit
                     """);
 
             switch (menu) {
@@ -183,7 +185,6 @@ public class MainApplication {
             JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
         }
     }
-
     public static void findDiary() {
         String name = JOptionPane.showInputDialog("Enter your username to find your diary: ");
         if (name == null || name.trim().isEmpty()) {
@@ -229,20 +230,3 @@ public class MainApplication {
         return diary;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
